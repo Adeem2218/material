@@ -1,8 +1,18 @@
+/* eslint-disable */
+import { Card, Grid } from "@mui/material";
+import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import DataTable from "examples/Tables/DataTable";
+import { Component } from "react";
 
-export default function data() {
-  return {
-    columns: [
+class data extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const columns = [
       { Header: "ItemCode", accessor: "itemCode", align: "left" },
       { Header: "Name", accessor: "name", align: "left" },
       { Header: "UPC", accessor: "upc", align: "left" },
@@ -17,9 +27,8 @@ export default function data() {
       { Header: "Purchase Price", accessor: "purchasePrice", align: "center" },
       { Header: "Item Status", accessor: "itemStatus", align: "center" },
       { Header: "Action", accessor: "action", align: "center" },
-    ],
-
-    rows: [
+    ];
+    const rows = [
       {
         itemCode: "code 1",
         name: (
@@ -770,6 +779,44 @@ export default function data() {
           </MDTypography>
         ),
       },
-    ],
-  };
+    ];
+
+    return (
+      <MDBox pt={2} pb={3}>
+        <Grid container spacing={6}>
+          <Grid item xs={12}>
+            <Card>
+              <MDBox
+                mx={2}
+                mt={-3}
+                py={3}
+                px={2}
+                mb={0}
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+              >
+                <MDTypography variant="h6" color="white">
+                  Items List
+                </MDTypography>
+              </MDBox>
+              <MDBox px={2}>
+                <DataTable
+                  table={{ columns, rows }}
+                  isSorted={false}
+                  entriesPerPage={true}
+                  showTotalEntries={false}
+                  canSearch={true}
+                  noEndBorder
+                />
+              </MDBox>
+            </Card>
+          </Grid>
+        </Grid>
+      </MDBox>
+    );
+  }
 }
+
+export default data;

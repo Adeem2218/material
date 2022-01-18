@@ -3,14 +3,17 @@ import * as React from "react";
 import { Box, Card, Grid, Tab, Tabs, TabsContext } from "@mui/material";
 import { TabPanel, TabContext } from "@mui/lab";
 import MDBox from "components/MDBox";
+import MDTypography from "components/MDTypography";
+
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
-import ItemsDataTable from "layouts/Items/data/itemsTableData";
+import ListItems from "layouts/Items/data/itemsTableData";
 
 import AddItem from "./addItem";
 import EditItem from "./editItems";
+import DeleteItem from "./deleteItem";
 
 class Items extends React.Component {
   constructor(props) {
@@ -23,24 +26,8 @@ class Items extends React.Component {
   handleChange = async (event, newValue) => {
     await this.setState({ value: newValue });
   };
-  ListItems = () => {
-    const { columns, rows } = new ItemsDataTable();
-    return (
-      <DataTable
-        p={0}
-        m={0}
-        table={{ columns, rows }}
-        isSorted={false}
-        entriesPerPage={true}
-        showTotalEntries={false}
-        canSearch={true}
-        noEndBorder
-      />
-    );
-  };
 
   render() {
-    const { ListItems } = this;
     return (
       <DashboardLayout>
         <DashboardNavbar />
@@ -48,12 +35,12 @@ class Items extends React.Component {
           <Grid container spacing={6}>
             <Grid item xs={12}>
               <Card>
-                <MDBox mx={2}>
+                <MDBox>
                   <Box sx={{ width: "100%", typography: "body1" }}>
                     <TabContext value={this.state.value}>
                       <MDBox
                         mx={2}
-                        mt={-3}
+                        mt={-4}
                         py={2}
                         px={2}
                         mb={0}
@@ -77,9 +64,7 @@ class Items extends React.Component {
                         </Tabs>
                       </MDBox>
                       <TabPanel value="1">
-                        <MDBox pb={3}>
-                          <ListItems />
-                        </MDBox>
+                        <ListItems />
                       </TabPanel>
                       <TabPanel value="2">
                         <MDBox>
@@ -91,7 +76,11 @@ class Items extends React.Component {
                           <EditItem />
                         </MDBox>
                       </TabPanel>
-                      <TabPanel value="4">Item Four</TabPanel>
+                      <TabPanel value="4">
+                        <MDBox>
+                          <DeleteItem />
+                        </MDBox>
+                      </TabPanel>
                     </TabContext>
                   </Box>
                 </MDBox>

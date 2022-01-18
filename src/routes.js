@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 /** 
   All of the routes for the Soft UI Dashboard React are added here,
   You can add a new route, customize the routes and delete the routes here.
@@ -39,7 +24,6 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Items from "layouts/Items";
-import AddItem from "layouts/Items/addItem";
 import Testing from "layouts/testing";
 // import Billing from "layouts/billing";
 // import RTL from "layouts/rtl";
@@ -75,14 +59,6 @@ const routes = [
     icon: <Icon fontSize="small">view_list</Icon>,
     route: "/items",
     component: <Items />,
-  },
-  {
-    type: "collapse",
-    name: "Add Item",
-    key: "add_items",
-    icon: <Icon fontSize="small">add_item</Icon>,
-    route: "/items/add",
-    component: <AddItem />,
   },
   {
     type: "collapse",

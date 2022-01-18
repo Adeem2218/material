@@ -1,17 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 /* eslint-disable */
 
 import * as React from "react";
@@ -186,7 +172,7 @@ class AddItem extends React.Component {
                         value={localPurchaseAccount}
                         name="localPurchaseAccount"
                         required
-                        onChange={this}
+                        onChange={this.handleChange}
                       />
                     </Grid>
                     <Grid item xs={4} p={1}>
@@ -202,7 +188,7 @@ class AddItem extends React.Component {
                         value={importPurchaseAccount}
                         name="importPurchaseAccount"
                         required
-                        onChange={this.handleImportPurchaseAccountChange}
+                        onChange={this.handleChange}
                       />
                     </Grid>
                     <Grid item xs={4} py={1} pl={1}>
@@ -218,7 +204,7 @@ class AddItem extends React.Component {
                         name="saleAccount"
                         value={saleAccount}
                         required
-                        onChange={this.handleSaleAccountChange}
+                        onChange={this.handleChange}
                       />
                     </Grid>
                     <Grid item py={1} pr={1} xs={3}>
@@ -231,7 +217,7 @@ class AddItem extends React.Component {
                         name="upc"
                         value={upc}
                         required
-                        onChange={this.handleUpcChange}
+                        onChange={this.handleChange}
                       />
                     </Grid>
                     <Grid item py={1} px={1} xs={3}>
@@ -244,7 +230,7 @@ class AddItem extends React.Component {
                         name="packing"
                         value={packing}
                         required
-                        onChange={this.handlePackingChange}
+                        onChange={this.handleChange}
                       />
                     </Grid>
                     <Grid item py={1} px={1} xs={3}>
@@ -258,7 +244,7 @@ class AddItem extends React.Component {
                           value={itemType}
                           name="itemType"
                           label="Item Type"
-                          onChange={this.handleItemTypeChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -283,7 +269,7 @@ class AddItem extends React.Component {
                           value={varietyType}
                           name="varietyType"
                           label="Variety Type"
-                          onChange={this.handleVarietyTypeChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -307,7 +293,7 @@ class AddItem extends React.Component {
                           value={crop}
                           label="Crop"
                           name="crop"
-                          onChange={this.handleCropChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -334,7 +320,7 @@ class AddItem extends React.Component {
                           value={category}
                           label="Category"
                           name="category"
-                          onChange={this.handleCategoryChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -422,7 +408,7 @@ class AddItem extends React.Component {
                           value={subCategory}
                           name="subCategory"
                           label="Sub-Category"
-                          onChange={this.handleSubCategoryChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -449,7 +435,7 @@ class AddItem extends React.Component {
                           value={brand}
                           name="brand"
                           label="Brand"
-                          onChange={this.handleBrandChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -612,7 +598,7 @@ class AddItem extends React.Component {
                           value={masterPackingUnit}
                           name="masterPackingUnit"
                           label="master-packing-unit"
-                          onChange={this.handleMasterPackingUnitChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -694,7 +680,7 @@ class AddItem extends React.Component {
                           id="item-status-select"
                           value={itemStatus}
                           label="Item Status"
-                          onChange={this.handleItemStatusChange}
+                          onChange={this.handleChange}
                           MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
                         >
                           <MenuItem value="">
@@ -707,7 +693,11 @@ class AddItem extends React.Component {
                     </Grid>
                     <Grid item xs={12} py={1}>
                       <MDTypography fontWeight="light">Notes:</MDTypography>
-                      <textarea className="form-control py-1 px-2 col-3" name="notes" />
+                      <textarea
+                        className="form-control py-1 px-2 col-3"
+                        name="notes"
+                        onChange={this.handleChange}
+                      />
                     </Grid>
                     <div
                       type="submit"

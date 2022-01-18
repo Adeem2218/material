@@ -1,17 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 /* eslint-disable */
 
 import * as React from "react";
@@ -57,37 +43,50 @@ class EditItem extends React.Component {
       itemAvailability: false,
     };
 
+    this.handleDataChange = this.handleDataChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.Data = this.Data.bind(this);
   }
-  async componentDidMount() {
-    // const res = await axios.get("http://localhost:8000/");
-    // if (res.data.status === 200) {
-    //   console.log(res.data);
-    //   console.log(res.data.message);
-    //   // swal({
-    //   //   title: "Success!",
-    //   //   text: "Item Added Successfully!",
-    //   //   icon: "success",
-    //   //   button: "OK!",
-    //   // });
-    // }
-    // await this.setState({
-    //   editItemCode: "124",
-    // });
-  }
 
-  handleChange = (e) => {
+  handleDataChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = async (e) => {
+  handleChange = async (e) => {
     e.preventDefault();
     const { itemAvailability, editItemCode } = this.state;
     console.log(itemAvailability);
     console.log(editItemCode);
     if (editItemCode === "1234") {
       await this.setState({ itemAvailability: true });
+    }
+  };
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(this.state);
+    const data = ({
+      itemCode,
+      description,
+      localPurchaseAccount,
+      importPurchaseAccount,
+      saleAccount,
+      upc,
+      itemType,
+      varietyType,
+      crop,
+      category,
+      subCategory,
+      brand,
+      masterPackingUnit,
+      unitPrice,
+      sellingPrice,
+      purchasePrice,
+      itemStatus,
+    } = this.state);
+    const res = await axios.post("http://localhost:8000/api/", data);
+    if (res.data.status === 200) {
+      console.log(res.data);
+      console.log(res.data.message);
     }
   };
 
@@ -122,7 +121,7 @@ class EditItem extends React.Component {
     }
 
     return itemAvailability ? (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <Grid container>
           <Grid item xs={4} py={1} pr={1}>
             <MDTypography fontWeight="light">
@@ -137,7 +136,7 @@ class EditItem extends React.Component {
               name="itemCode"
               value={itemCode}
               required
-              onChange={this.handleChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item xs={8} py={1} pl={1}>
@@ -153,7 +152,7 @@ class EditItem extends React.Component {
               name="description"
               value={description}
               required
-              onChange={this.hanldeDescriptionChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item xs={4} py={1} pr={1}>
@@ -169,7 +168,7 @@ class EditItem extends React.Component {
               value={localPurchaseAccount}
               name="localPurchaseAccount"
               required
-              onChange={this.handleLocalPurchaseAccountChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item xs={4} p={1}>
@@ -185,7 +184,7 @@ class EditItem extends React.Component {
               value={importPurchaseAccount}
               name="importPurchaseAccount"
               required
-              onChange={this.handleImportPurchaseAccountChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item xs={4} py={1} pl={1}>
@@ -201,7 +200,7 @@ class EditItem extends React.Component {
               name="saleAccount"
               value={saleAccount}
               required
-              onChange={this.handleSaleAccountChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item py={1} pr={1} xs={3}>
@@ -214,7 +213,7 @@ class EditItem extends React.Component {
               name="upc"
               value={upc}
               required
-              onChange={this.handleUpcChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item py={1} px={1} xs={3}>
@@ -227,7 +226,7 @@ class EditItem extends React.Component {
               name="packing"
               value={packing}
               required
-              onChange={this.handlePackingChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item py={1} px={1} xs={3}>
@@ -241,7 +240,7 @@ class EditItem extends React.Component {
                 value={itemType}
                 name="itemType"
                 label="Item Type"
-                onChange={this.handleItemTypeChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -266,7 +265,7 @@ class EditItem extends React.Component {
                 value={varietyType}
                 name="varietyType"
                 label="Variety Type"
-                onChange={this.handleVarietyTypeChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -290,7 +289,7 @@ class EditItem extends React.Component {
                 value={crop}
                 label="Crop"
                 name="crop"
-                onChange={this.handleCropChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -317,7 +316,7 @@ class EditItem extends React.Component {
                 value={category}
                 label="Category"
                 name="category"
-                onChange={this.handleCategoryChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -405,7 +404,7 @@ class EditItem extends React.Component {
                 value={subCategory}
                 name="subCategory"
                 label="Sub-Category"
-                onChange={this.handleSubCategoryChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -432,7 +431,7 @@ class EditItem extends React.Component {
                 value={brand}
                 name="brand"
                 label="Brand"
-                onChange={this.handleBrandChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -593,7 +592,7 @@ class EditItem extends React.Component {
                 value={masterPackingUnit}
                 name="masterPackingUnit"
                 label="master-packing-unit"
-                onChange={this.handleMasterPackingUnitChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -627,7 +626,7 @@ class EditItem extends React.Component {
               value={unitPrice}
               name="unitPrice"
               required
-              onChange={this.handleUnitPriceChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item py={1} pr={1} xs={4}>
@@ -643,7 +642,7 @@ class EditItem extends React.Component {
               value={sellingPrice}
               name="sellingPrice"
               required
-              onChange={this.handleSellingPriceChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item py={1} px={1} xs={4}>
@@ -659,7 +658,7 @@ class EditItem extends React.Component {
               value={purchasePrice}
               name="PurchasePrice"
               required
-              onChange={this.handlePurchasePriceChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item xs={4} py={1} pl={1}>
@@ -675,7 +674,7 @@ class EditItem extends React.Component {
                 id="item-status-select"
                 value={itemStatus}
                 label="Item Status"
-                onChange={this.handleItemStatusChange}
+                onChange={this.handleDataChange}
                 MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
               >
                 <MenuItem value="">
@@ -688,9 +687,13 @@ class EditItem extends React.Component {
           </Grid>
           <Grid item xs={12} py={1}>
             <MDTypography fontWeight="light">Notes:</MDTypography>
-            <textarea className="form-control py-1 px-2 col-3" name="notes" />
+            <textarea
+              className="form-control py-1 px-2 col-3"
+              name="notes"
+              onChange={this.handleChange}
+            />
           </Grid>
-          <div type="submit" className="button rounded-3 d-flex align-content-center col-12">
+          <button type="submit" className="btn btn-sm rounded-3 d-flex align-content-center col-12">
             <img
               className="my-2 rounded-3 align-content-end mx-auto"
               mx="auto"
@@ -699,11 +702,11 @@ class EditItem extends React.Component {
               width="120"
               height="40"
             />
-          </div>
+          </button>
         </Grid>
       </form>
     ) : (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleChange}>
         <Grid container>
           <Grid item xs={12} py={1} pr={1}>
             <MDTypography fontWeight="light">
@@ -718,7 +721,7 @@ class EditItem extends React.Component {
               name="editItemCode"
               value={editItemCode}
               required
-              onChange={this.handleChange}
+              onChange={this.handleDataChange}
             />
           </Grid>
           <Grid item xs={12} py={1} pr={1}>
@@ -731,9 +734,8 @@ class EditItem extends React.Component {
                 mx="auto"
                 src={SaveIcon}
                 alt=""
-                width="120"
-                height="40"
-                type="submit"
+                width="105"
+                height="45"
               />
             </button>
           </Grid>
