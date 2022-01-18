@@ -1,0 +1,10 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "prettier.endOfLine": "auto",
+  "prettier.jsxBracketSameLine": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.useTabs": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
+}
